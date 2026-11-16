@@ -1,0 +1,86 @@
+:root {
+  --bg: #e9eef2;
+  --surface: #ffffff;
+  --ink: #101828;
+  --muted: #566073;
+  --line: #c3ccd8;
+  --accent: #2640ff;
+  --error: #b42318;
+  --pad: clamp(1.25rem, 5vw, 4rem);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1420; --surface: #141d2c; --ink: #e8edf5; --muted: #98a3b6;
+    --line: #2a3548; --accent: #7e90ff; --error: #ff8a80; color-scheme: dark;
+  }
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 1.0625rem/1.6 "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+main, .top, footer { max-width: 62rem; margin: 0 auto; padding-inline: var(--pad); }
+.top { padding-block: 1.25rem; }
+.top nav { display: flex; gap: 1.25rem; justify-content: flex-end; }
+.top a { color: var(--muted); text-decoration: none; font-weight: 600; }
+.top a:hover { color: var(--accent); }
+
+.hero { padding-block: clamp(3rem, 12vw, 8rem) clamp(3rem, 8vw, 5rem); }
+h1 {
+  margin: 0; font-weight: 800; letter-spacing: -0.035em; line-height: 0.95;
+  font-size: clamp(3rem, 14vw, 9rem); overflow-wrap: anywhere;
+}
+.role { margin: 1.5rem 0 0; font-size: 1.35rem; font-weight: 600; color: var(--accent); }
+.bio { max-width: 38rem; margin: 1rem 0 0; color: var(--muted); }
+.links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin: 1.5rem 0 0; font-weight: 600; }
+
+section + section { margin-top: clamp(3rem, 8vw, 6rem); }
+h2 { margin: 0 0 1.5rem; font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; }
+
+.rows { border-top: 2px solid var(--ink); }
+.row {
+  display: grid; gap: 0.5rem 2rem; padding: 1.5rem 0; border-bottom: 1px solid var(--line);
+}
+.row h3 { margin: 0; font-size: 1.35rem; font-weight: 600; }
+.row p { margin: 0; color: var(--muted); max-width: 40rem; }
+.stack { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; margin: 0; padding: 0; }
+.stack li { border: 1px solid var(--line); border-radius: 999px; padding: 0.1rem 0.7rem; font-size: 0.9rem; }
+.row .links { margin: 0.25rem 0 0; font-size: 1rem; }
+
+.skill-groups { display: grid; gap: 2rem; }
+.skill-groups h3 { margin: 0 0 0.5rem; font-size: 1rem; font-weight: 600; color: var(--muted); }
+.skill-groups ul { list-style: none; margin: 0; padding: 0; }
+.skill-groups li { display: flex; justify-content: space-between; align-items: center; padding: 0.55rem 0; border-bottom: 1px solid var(--line); }
+.dots { display: inline-flex; gap: 4px; }
+.dots i { width: 0.65rem; height: 0.65rem; border-radius: 50%; border: 2px solid var(--accent); }
+.dots i.on { background: var(--accent); }
+
+form { display: grid; gap: 0.35rem; max-width: 36rem; }
+label { display: grid; gap: 0.35rem; font-weight: 600; margin-top: 0.75rem; }
+input, textarea {
+  font: inherit; padding: 0.7rem 0.85rem; color: var(--ink); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 6px; width: 100%;
+}
+input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--error); }
+.err { color: var(--error); font-size: 0.95rem; min-height: 0; }
+.trap { position: absolute; left: -9999px; }
+button {
+  margin-top: 1rem; justify-self: start; font: inherit; font-weight: 600; cursor: pointer;
+  padding: 0.8rem 1.6rem; border: 0; border-radius: 6px; background: var(--accent); color: #fff;
+}
+button:disabled { opacity: 0.6; cursor: wait; }
+#form-status { margin: 0.5rem 0 0; font-weight: 600; }
+#form-status.ok { color: #067647; }
+#form-status.bad { color: var(--error); }
+footer { padding-block: 4rem 2rem; color: var(--muted); }
+
+@media (min-width: 48rem) {
+  .row { grid-template-columns: 14rem 1fr; }
+  .row .stack, .row .links { grid-column: 2; }
+  .skill-groups { grid-template-columns: repeat(2, 1fr); gap: 2rem 3rem; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
